@@ -1,12 +1,4 @@
 let billetter= [];
-/***let ut="<table><tr>" +
- "<th>Film</th>" +
- "<th>Antall</th>" +
- "<th>Fornavn</th>" +
- "<th>Etternavn</th>" +
- "<th>Telefonnummer</th>" +
- "<th>Epost</th>" + "</tr>";***/
-
 function kjopticket() {
     let billett = {
         film: document.getElementById("filmer").value,
