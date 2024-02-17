@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinobilletter</title>
+</head>
+<body>
+<h1 class="h1 text-center">Bestilling av kinobiletter</h1>
+<label for="filmer">Velg film:</label>
+<select id ="filmer" class="form-select" aria-label="Default select example">
+    <option value="blank"></option>
+    <option value="Film 1">Film 1</option>
+    <option value="Film 2">Film 2</option>
+    <option value="Film 3">Film 3</option>
+    <option value="Film 4">Film 4</option>
+</select>
+<br>
+<label for="Antall">Antall:</label>
+<input id="Antall" class="form-control" type="number">
+<br>
+<label for="Fornavn">Fornavn:</label>
+<input id="Fornavn" class="form-control" type="text">
+<span id="FornavnError"></span>
+<br>
+<label for="Etternavn">Etternavn:</label>
+<input id="Etternavn" class="form-control" type="text">
+<span id="EtternavnError"></span>
+<br>
+<label for="TelefonNr">Telefonnr:</label>
+<input id="TelefonNr" class="form-control" type="number">
+<span id="TelefonNrError"></span>
+<br>
+<label for="Epost">Epost:</label>
+<input id="Epost" class="form-control" type="text">
+<span id="EpostError"></span>
+<br>
+
+<button onclick="kjopticket()">Kjøp billett</button>
+<!--<input type="submit" class="form-controll" value="kjøp billett" onclick="kjopticket()">-->
+
+<h1 class="h1 text-center">Alle billetter</h1>
+<div id="ut"></div>
+
+<button onclick="AltDelete()">Slett alle billettene</button>
+<!--<button onclick="AltDelete()" type="button" class="btn btn-primary">Slett alle billeter</button>-->
+<script src="oblig1.js"></script>
+
+</body>
+</html>
+
