@@ -56,4 +56,12 @@ function nullstillFeilmeldinger(){
     document.getElementById("EtternavnError").innerHTML="";
     document.getElementById("TelefonNrError").innerHTML="";
     document.getElementById("EpostError").innerHTML="";
+
+    // Loop gjennom billettArray og legg til li-elementer i ul
+    for (let i = 0; i < billetter.length; i++) {
+        let billett = billetter[i];
+        let liElement = document.createElement('li');
+        liElement.textContent = `${billett.film} - ${billett.antall} billetter`;
+        billettListeElement.appendChild(liElement);
+    }
 }
