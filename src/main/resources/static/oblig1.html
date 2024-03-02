@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kinobilletter</title>
+    <style>
+        .error-message{
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <form id="billettForm">
@@ -21,6 +26,7 @@
         <br>
         <label for="Antall">Antall:</label>
             <input id="Antall" class="form-control" type="number">
+            <span id="AntallError"></span>
         <br>
         <label for="Fornavn">Fornavn:</label>
             <input id="Fornavn" class="form-control" type="text">
@@ -42,7 +48,7 @@
         <button onclick="kjopticket()">Kjøp billett</button>
 
         <h1 class="h1 text-center">Alle billetter</h1>
-        <div id="ut"></div>
+        <div id="billetliste"></div>
 
     </form>
 

@@ -1,4 +1,15 @@
 let billetter= [];
+let billettlisteElement = document.getElementById("billettliste");
+function generateErrorMessage(field) {
+    return `<span class="error-message">Må skrive noe inn i ${field}</span>`;
+}
+
+function validateEmail(email) {
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+
 function kjopticket() {
     let billett = {
         film: document.getElementById("filmer").value,
@@ -6,27 +17,45 @@ function kjopticket() {
         fornavn: document.getElementById("Fornavn").value,
         etternavn: document.getElementById("Etternavn").value,
         telefonnr: document.getElementById("TelefonNr").value,
-        epost: document.getElementById("Epost").value
+        epost: document.getElementById("Epost").value,
     };
-
-    //Input
-    if (!billett.antall || !billett.fornavn || !billett.etternavn || !billett.telefonnr || !billett.epost) {
-        document.getElementById("AntallError").innerHTML = "Fyll inn verdi";
-        document.getElementById("FornavnError").innerHTML = "Fyll inn verdi";
-        document.getElementById("EtternavnError").innerHTML = "Fyll inn verdi";
-        document.getElementById("TelefonNrError").innerHTML = "Fyll inn verdi";
-        document.getElementById("EpostError").innerHTML = "Fyll inn verdi";
+    //Validering
+    if (!validateEmail(billett.epost)) {
+        document.getElementById("EpostError").innerHTML = generateErrorMessage('epost');
+        return;
     } else {
-        billetter.push(billett);
-        // Tøm inputfeltene
-        document.getElementById("Antall").value = "";
-        document.getElementById("Fornavn").value = "";
-        document.getElementById("Etternavn").value = "";
-        document.getElementById("TelefonNr").value = "";
-        document.getElementById("Epost").value = "";
-        //Nullstill feilmeldinger
-        nullstillFeilmeldinger();
+        document.getElementById("EpostError").innerHTML = "";
     }
+
+    if(!billett.antall){
+        document.getElementById("AntallError").innerHTML = generateErrorMessage('antall');
+        return;
+    } else {
+        document.getElementById("AntallError").innerHTML = "";
+    }
+
+    if(!billett.fornavn){
+        document.getElementById("FornavnError").innerHTML = generateErrorMessage('fornavnet');
+        return;
+    } else {
+        document.getElementById("FornavnError").innerHTML = "";
+    }
+
+    if(!billett.etternavn){
+        document.getElementById("EtternavnError").innerHTML = generateErrorMessage('etternavnet');
+        return;
+    } else {
+        document.getElementById("EtternavnError").innerHTML = "";
+    }
+
+    if(!billett.telefonnr){
+        document.getElementById("TelefonNrError").innerHTML = generateErrorMessage('telefonnr');
+        return;
+    } else {
+        document.getElementById("TelefonNrError").innerHTML = "";
+    }
+    //Hvis alle valideringer passerer, legges til billetten i arrayet
+    billetter.push(billett);
 }
 
 function visBilletter(){
@@ -41,12 +70,12 @@ function visBilletter(){
             "<td>" + billett.epost + "</td>";
         ut+="</tr>";
     }
-    document.getElementById("billettliste").innerHTML= ut;
+    billettlisteElement.innerHTML = ut;
 }
 
 function AltDelete(){
-    document.getElementById("billettliste").innerHTML="";
-    billetter=[];
+    billettlisteElement.innerHTML = "";
+    billetter = [];
     nullstillFeilmeldinger();
 }
 
@@ -56,12 +85,4 @@ function nullstillFeilmeldinger(){
     document.getElementById("EtternavnError").innerHTML="";
     document.getElementById("TelefonNrError").innerHTML="";
     document.getElementById("EpostError").innerHTML="";
-
-    // Loop gjennom billettArray og legg til li-elementer i ul
-    for (let i = 0; i < billetter.length; i++) {
-        let billett = billetter[i];
-        let liElement = document.createElement('li');
-        liElement.textContent = `${billett.film} - ${billett.antall} billetter`;
-        billettListeElement.appendChild(liElement);
-    }
 }
